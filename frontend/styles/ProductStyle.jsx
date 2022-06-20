@@ -6,7 +6,9 @@ export const ProductStyles = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-
+&:hover {
+  transform: scale(1.01) translateY(-2px)
+}
   img{
     width: 100%;
     cursor: pointer;
