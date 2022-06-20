@@ -4,8 +4,11 @@ export const DetailsStyles = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 5rem;
+  height: 30vh;
   img {
     width: 40%;
+    height: 30vh;
+    object-fit: cover;
   }
 `
 

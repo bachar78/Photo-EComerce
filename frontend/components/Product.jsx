@@ -1,13 +1,16 @@
 import { ProductStyles } from "../styles/ProductStyle"
+import Link from 'next/link'
+
 export default function Product({ product }) {
   //Extract the info from props
-  const { price, title, image } = product.attributes
-
+  const { price, title, image, slug } = product.attributes
   return (
     <ProductStyles>
-      <div>
-        <img src={image.data.attributes.formats.small.url} alt='product' />
-      </div>
+      <Link href={`/product/${slug}`}>
+        <div>
+          <img src={image.data.attributes.formats.small.url} alt='product' />
+        </div>
+      </Link>
       <h2>{title}</h2>
       <h3>${price}</h3>
     </ProductStyles>
