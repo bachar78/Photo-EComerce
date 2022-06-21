@@ -7,10 +7,11 @@ import {
   Card,
   CardInfo,
   EmptyStyle,
+  Checkout
 } from '../styles/CartStyles'
 import { Quantity } from '../styles/ProductDetails'
 function Cart() {
-  const { cartItems, setShowCart, onAdd, onRemove } = useStateContext()
+  const { cartItems, setShowCart, onAdd, onRemove, totalPrice } = useStateContext()
   return (
     <CartWrapper onClick={() => setShowCart(false)}>
       <CartStyle onClick={(e) => e.stopPropagation()}>
@@ -45,6 +46,12 @@ function Cart() {
               </Card>
             )
           })}
+          {cartItems.length >= 1 && (
+            <Checkout>
+              <h3>Subtotal: ${totalPrice}</h3>
+              <button>Purchase</button>
+            </Checkout>
+          )}
       </CartStyle>
     </CartWrapper>
   )

@@ -27,6 +27,7 @@ export const ProductInfo = styled.div`
 export const Quantity = styled.div`
   display: flex;
   align-items: center;
+  margin: 1rem 0;
   button {
     background: transparent;
     border: none;
