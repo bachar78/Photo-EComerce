@@ -7,24 +7,23 @@ import {
   Card,
   CardInfo,
   EmptyStyle,
-  Quantity,
 } from '../styles/CartStyles'
-
+import { Quantity } from '../styles/ProductDetails'
 function Cart() {
-  const { cartItems, setShowCart, onAdd } = useStateContext()
+  const { cartItems, setShowCart, onAdd, onRemove } = useStateContext()
   return (
-    <CartWrapper onClick={()=> setShowCart(false)}>
-      <CartStyle onClick={(e)=> e.stopPropagation()}>
+    <CartWrapper onClick={() => setShowCart(false)}>
+      <CartStyle onClick={(e) => e.stopPropagation()}>
         {cartItems.length < 1 && (
           <EmptyStyle>
             <h1>You have more shopping to do 😉 </h1>
-            <FaShoppingCart/>
+            <FaShoppingCart />
           </EmptyStyle>
         )}
         {cartItems.length >= 1 &&
           cartItems.map((item) => {
             return (
-              <Card>
+              <Card key={item.slug}>
                 <img
                   src={item.image.data.attributes.formats.thumbnail.url}
                   alt={item.title}
@@ -34,9 +33,13 @@ function Cart() {
                   <h3>${item.price}</h3>
                   <Quantity>
                     <span>Quantity</span>
-                    <button><AiFillMinusCircle/></button>
+                    <button onClick={() => onRemove(item)}>
+                      <AiFillMinusCircle />
+                    </button>
                     <p>{item.quantity}</p>
-                    <button><AiFillPlusCircle/></button>
+                    <button onClick={() => onAdd(item, 1)}>
+                      <AiFillPlusCircle />
+                    </button>
                   </Quantity>
                 </CardInfo>
               </Card>

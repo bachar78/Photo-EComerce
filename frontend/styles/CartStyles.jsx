@@ -15,7 +15,7 @@ export const CartWrapper = styled.div`
 `
 
 export const CartStyle = styled.div`
-  width: 35%;
+  width: 40%;
   background: #f1f1f1eb;
   padding: 2rem 5rem;
   overflow-y: scroll;
@@ -63,8 +63,4 @@ svg {
   font-size: 10rem;
   color: var(--secondary);
 }
-`
-
-export const Quantity = styled.div`
-  
 `
