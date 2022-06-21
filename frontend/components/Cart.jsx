@@ -13,8 +13,8 @@ import {
 function Cart() {
   const { cartItems, setShowCart, onAdd } = useStateContext()
   return (
-    <CartWrapper>
-      <CartStyle>
+    <CartWrapper onClick={()=> setShowCart(false)}>
+      <CartStyle onClick={(e)=> e.stopPropagation()}>
         {cartItems.length < 1 && (
           <EmptyStyle>
             <h1>You have more shopping to do 😉 </h1>
