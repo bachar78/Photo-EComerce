@@ -9,13 +9,22 @@ import {
 } from '../../styles/ProductDetails'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { useStateContext } from '../../lib/context'
+import toast from 'react-hot-toast'
+import { useEffect } from 'react'
 
 export default function ProductDetails() {
   //Use State
-  const { qty, increaseQty, decreaseQty, onAdd } = useStateContext()
+  const { qty, increaseQty, decreaseQty, onAdd, setQty } = useStateContext()
+  //Reset the quantity
+  useEffect(() => {
+    setQty(1)
+  }, [])
   //Fetch Slug
   const { query } = useRouter()
-
+  //Create a toast
+  const notify = (message) => {
+    toast.success(message, { duration: 1500 })
+  }
   //Fetch Graphql data
   const [results] = useQuery({
     query: GET_PRODUCT_QUERY,
@@ -47,7 +56,14 @@ export default function ProductDetails() {
             <AiFillPlusCircle />
           </button>
         </Quantity>
-        <Buy onClick={()=> onAdd(product,qty)}>Add to Cart</Buy>
+        <Buy
+          onClick={() => {
+            onAdd(product, qty)
+            notify(`${product.title} added to your cart`)
+          }}
+        >
+          Add to Cart
+        </Buy>
       </ProductInfo>
     </DetailsStyles>
   )
